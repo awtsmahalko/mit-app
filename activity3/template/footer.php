@@ -44,7 +44,16 @@ if(!empty($msg)) {
 
 </script>
 <?php  } ?>
-
+<script>
+    function modifyUser(username){
+        $("#uusername").val(username);
+        $("#edituser").modal('show');
+    }
+    function deleteUser(username){
+        $("#dusername").val(username);
+        $("#deleteuser").modal('show');
+    }
+</script>
 
 
 </body>
