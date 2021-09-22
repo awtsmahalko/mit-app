@@ -41,11 +41,15 @@ if(isset($_POST['uusername'])){
 }
 
 if(isset($_POST['dusername'])){
-    $result = $user->deleteUser($_POST['dusername']);
-    if($result)
-        $msg = "User successfully deleted!";
-    else
-        $msg = "Failed to delete user";
+    if($_SESSION['username'] == $_POST['dusername']){
+        $msg = "Unable to delete your own account!";
+    }else{
+        $result = $user->deleteUser($_POST['dusername']);
+        if($result)
+            $msg = "User successfully deleted!";
+        else
+            $msg = "Failed to delete user";
+    }
 }
 
 ?>
@@ -63,7 +67,7 @@ if(isset($_POST['dusername'])){
         <div class="container-fluid px-4">
             <h1 class="mt-4">Users</h1>
             <ol class="breadcrumb mb-4">
-                <li class="breadcrumb-item active">Users</li>
+                <li class="breadcrumb-item active">Users </li>
             </ol>
             <div class="row">
                 <div class="col-md-2 offset-10">
