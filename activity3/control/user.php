@@ -22,6 +22,24 @@ class user
         }
         return $result;
     }
+    function registerNewUser($username, $password) {
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
+        $result = false;
+        $cn = $this->connect();
+        $username = filter_var($username, FILTER_SANITIZE_STRING);
+        $password = password_hash($password, PASSWORD_DEFAULT);
+
+        $sql = "INSERT INTO mit_user (username,password) VALUES(?,?)";
+        $qry = $cn->prepare($sql);
+        $qry->bind_param("ss", $username, $password);
+        if($qry->execute()) {
+            $_SESSION['username'] = $username;
+            $result = true;
+        }
+        return $result;
+    }
     function checkIfUserExist($username){
         $cn = $this->connect();
         $result = 0;
