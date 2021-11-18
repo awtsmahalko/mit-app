@@ -2,7 +2,7 @@
 
 /** Core Path **/
 define("view", "pages/");
-define("base_url", "http://192.168.64.2/PIMS");
+define("base_url", "http://eduardcarton.ml/mit-app/final");
 
 /** Database connection **/
 
@@ -18,23 +18,28 @@ define("database","u981310152_pims_db");
 define("host", "localhost");
 define("username", "root");
 define("password", "");
-define("database", "pims_db");
+define("database", "mit_db");
 /** Auth **/
 
 define("email", "pims.mit2021@gmail.com");
 define("email_pass", "pimsmit@2021!");
-define("email_no", "09274018956");
+define("email_no", "");
 
-define("sms_api_code", "TR-PROCU018956_BPK9X");
-define("sms_api_pass", "kdrcb3(!y}");
+define("sms_api_code", "");
+define("sms_api_pass", "");
 
 define("is_dev", "Y");
 
-define("head_procure_entity", "MARLON L. SOLVIO, PhD");
+define("school_name", "NAME OF SCHOOL");
+define("school_head", "JUAN A DELA CRUZ, PhD");
+define("school_treasurer", "NAME OF SECRETARY");
 
-define("school_name", "HIMOGA-AN BAYBAY INTEGRATED SCHOOL");
-define("school_head", "MARLON L. SOLVIO, PhD");
-define("school_treasurer", "MARY ANN ESTELLOSO");
+define("bac_1", "BAC Member 1");
+define("bac_2", "BAC Member 2");
+define("bac_3", "BAC Member 3");
+define("bac_4", "BAC Member 4");
+define("bac_chair", "BAC Chair");
+define("bac_vice_chair", "BAC Vice Chair");
 
 define("table", "tbl_users");
 define("user_session_id", "user_id");
