@@ -10,8 +10,8 @@ while ($row = $fetch->fetch_array()) {
 
 	$list['id'] = $row['item_id'];
 	$list['item_name'] = $row['item_name'];
-	$list['item_desc'] = $row['item_desc'];
-	$list['item_serial_no'] = $row['item_serial_no'];
+	// $list['item_desc'] = $row['item_desc'];
+	// $list['item_serial_no'] = $row['item_serial_no'];
 	// $list['date_modified'] = date('M d, Y h:i A', strtotime($row['date_modified']));
 
 	array_push($response['data'], $list);
