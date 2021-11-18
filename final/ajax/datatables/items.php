@@ -5,10 +5,10 @@ $fetch = $mysqli_connect->query("SELECT * from tbl_items ORDER BY item_name ASC"
 
 $response['data'] = array();
 
-while ($row = $fetch->fetch_array()) {
+while ($row = $fetch->fetch_assoc()) {
 	$list = array();
 
-	$list['id'] = var_dump($row);
+	$list['id'] = $row['item_id'];
 	$list['item_name'] = ""; //$row["item_name"];
 	$list['item_desc'] = ""; //$row['item_desc'];
 	$list['item_serial_no'] = ""; // $row['item_serial_no'];
