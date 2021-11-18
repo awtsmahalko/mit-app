@@ -21,6 +21,7 @@ $database = database;
 
 $mysqli_connect = new mysqli($host, $username, $password, $database);
 $mysqli_connect->query("SET SESSION sql_mode=''");
+$mysqli_connect->query("SET CHARSET 'utf8'");
 
 if (mysqli_connect_error()) {
     die("Connection failed : " . mysqli_connect_error());
