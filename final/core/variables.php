@@ -2,23 +2,24 @@
 
 /** Core Path **/
 define("view", "pages/");
-define("base_url", "http://eduardcarton.ml/mit-app/final");
+define("base_url", "http://eduardcarton.ml/final");
 
 /** Database connection **/
 
+
+
+define("host", "localhost");
+define("username", "edua_user");
+define("password", "edua_pass");
+define("database", "edua_db");
+
 /*
-
-define("host","localhost");
-define("username","u981310152_root");
-define("password","?Hy0nOb3");
-define("database","u981310152_pims_db");
-
-*/
-
 define("host", "localhost");
 define("username", "root");
 define("password", "");
 define("database", "mit_db");
+*/
+
 /** Auth **/
 
 define("email", "pims.mit2021@gmail.com");
