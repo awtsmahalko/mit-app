@@ -112,7 +112,7 @@
                 },
                 {
                     "mRender": function(data, type, row) {
-                        return "<center><button class='btn btn-info btn-circle btn-sm' onclick='getEntryDetails(" + row.id + ")'><span class='fa fa-pen'></span></button><button class='btn btn-secondary btn-circle btn-sm' onclick='printIar(" + row.id + ")'><span class='fa fa-print'></span></button></center>";
+                        return "<center><button class='btn btn-info btn-circle btn-sm' onclick='getEntryDetails(" + row.id + ")'><span class='fa fa-pen'></span></button></center>";
                     }
                 },
                 {

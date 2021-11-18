@@ -34,7 +34,7 @@ $count_details = $fetch_details->num_rows;
     </tr>
     <tr style="font-size: 11pt;font-weight:bold;">
         <td>Entity Name : </td>
-        <td colspan='2'>HIMOGAAN BAYBAY INTEGRATED SCHOOL</td>
+        <td colspan='2'><?= school_name ?></td>
         <td colspan='3'>Fund Cluster : 01</td>
     </tr>
 </table>

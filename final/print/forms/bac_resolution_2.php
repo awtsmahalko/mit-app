@@ -114,11 +114,11 @@ $supplier = getSupplier($supplier_row['supplier_id']);
         <td colspan="7">&nbsp;</td>
     </tr>
     <tr align="center" style="font-weight: bold;font-family:'Arial Bold'">
-        <td>JUMBO Y. CAÑETE</td>
+        <td><?= bac_1 ?></td>
         <td></td>
-        <td colspan="2">CHRIS C. GABANA</td>
+        <td colspan="2"><?= bac_2 ?></td>
         <td></td>
-        <td colspan="2">MARY ANN B. ESTELLOSO</td>
+        <td colspan="2"><?= bac_3 ?></td>
     </tr>
     <tr align="center">
         <td colspan="7">&nbsp;</td>
@@ -130,9 +130,9 @@ $supplier = getSupplier($supplier_row['supplier_id']);
         <td colspan="7">&nbsp;</td>
     </tr>
     <tr align="center" style="font-weight: bold;font-family:'Arial Bold'">
-        <td>RUJIE VELASCO</td>
+        <td><?= bac_chair ?></td>
         <td></td>
-        <td colspan="2">MA. RHODA A. ODELMO</td>
+        <td colspan="2"><?= bac_vice_chair ?></td>
         <td></td>
         <td colspan="2"></td>
     </tr>

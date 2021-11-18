@@ -137,9 +137,9 @@ function PriceAmount($canvass_id, $supplier_id, $item_id, $packaging_id)
         <td colspan="3">&nbsp;</td>
     </tr>
     <tr align="center" style="font-weight: bold;">
-        <td>JUMBO CAÑETE</td>
-        <td><?= school_treasurer ?></td>
-        <td>CHRIS C. GABANA</td>
+        <td><?= bac_1 ?></td>
+        <td><?= bac_2 ?></td>
+        <td><?= bac_3 ?></td>
     </tr>
     <tr align="center" style="font-style:italic;">
         <td>Teacher</td>
@@ -148,15 +148,15 @@ function PriceAmount($canvass_id, $supplier_id, $item_id, $packaging_id)
     </tr>
     <tr align="center" style="font-style:italic;font-size:9pt;">
         <td>Member</td>
-        <td>School League Treasurer</td>
+        <td>Member</td>
         <td>Member</td>
     </tr>
     <tr>
         <td colspan="3">&nbsp;</td>
     </tr>
     <tr align="center" style="font-weight: bold;">
-        <td>RUJIE VELASCO</td>
-        <td>MA. RHODA A. ODELMO</td>
+        <td><?= bac_vice_chair ?></td>
+        <td><?= bac_chair ?></td>
         <td></td>
     </tr>
     <tr align="center" style="font-style:italic;">

@@ -43,7 +43,7 @@ $quot_no = $explode_pr_no[0] . "-" . $explode_pr_no[1] . "-" . $explode_pr_no[2]
     <tr>
         <td colspan='4'>Region VI - Western Visayas</td>
         <td colspan='2'></td>
-        <td colspan='4' style="border-bottom:1px solid;">HBIS - <?= strtoupper($pr_row['pr_department']) ?></td>
+        <td colspan='4' style="border-bottom:1px solid;">SCHOOL - <?= strtoupper($pr_row['pr_department']) ?></td>
     </tr>
     <tr>
         <td colspan='4'>DIVISION OF SAGAY CITY</td>
@@ -87,7 +87,7 @@ $quot_no = $explode_pr_no[0] . "-" . $explode_pr_no[1] . "-" . $explode_pr_no[2]
         <td></td>
         <td></td>
         <td></td>
-        <td colspan='4' style="font-family:'Arial Bold'"><b>MA. RHODA A. ODELMO</b></td>
+        <td colspan='4' style="font-family:'Arial Bold'"><b><?= bac_chair ?></b></td>
     </tr>
     <tr>
         <td width="5%">NOTE:</td>

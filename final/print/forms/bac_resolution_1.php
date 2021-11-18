@@ -59,17 +59,17 @@ $explode_pr_no = explode("-", $pr_row['pr_no']);
         <td colspan="7" style="font-size: 10pt;">Present:</td>
     </tr>
     <tr>
-        <td colspan="3" style="font-size: 10pt;"> MA. RHODA A. ODELMO - Chairperson</td>
+        <td colspan="3" style="font-size: 10pt;"> <?= bac_chair ?> - Chairperson</td>
         <td></td>
-        <td colspan="3" style="font-size: 10pt;"> MARY ANN B. ESTELLOSO - Member</td>
+        <td colspan="3" style="font-size: 10pt;"> <?= bac_1 ?> - Member</td>
     </tr>
     <tr>
-        <td colspan="3" style="font-size: 10pt;"> RUJIE VELASCO - Vice - Chair</td>
+        <td colspan="3" style="font-size: 10pt;"> <?= bac_vice_chair ?> - Vice - Chair</td>
         <td></td>
-        <td colspan="3" style="font-size: 10pt;"> JUMBO CAÑETE - Member</td>
+        <td colspan="3" style="font-size: 10pt;"> <?= bac_2 ?> - Member</td>
     </tr>
     <tr style="border-bottom: 1px solid;">
-        <td colspan="3" style="font-size: 10pt;"> CHRIS C. GABANA - Member</td>
+        <td colspan="3" style="font-size: 10pt;"> <?= bac_3 ?> - Member</td>
         <td></td>
         <td colspan="3" style="font-size: 10pt;"></td>
     </tr>
@@ -165,11 +165,11 @@ $explode_pr_no = explode("-", $pr_row['pr_no']);
         <td colspan="7">&nbsp;</td>
     </tr>
     <tr align="center" style="font-weight: bold;font-family:'Arial Bold'">
-        <td>JUMBO CAÑETE</td>
+        <td><?= bac_1 ?></td>
         <td></td>
-        <td colspan="2">CHRIS C. GABANA</td>
+        <td colspan="2"><?= bac_2 ?></td>
         <td></td>
-        <td colspan="2">MARY ANN B. ESTELLOSO</td>
+        <td colspan="2"><?= bac_3 ?></td>
     </tr>
     <tr align="center">
         <td>Member</td>
@@ -186,9 +186,9 @@ $explode_pr_no = explode("-", $pr_row['pr_no']);
         <td colspan="3">Approved:</td>
     </tr>
     <tr align="center" style="font-weight: bold;font-family:'Arial Bold'">
-        <td>RUJIE VELASCO</td>
+        <td><?= bac_vice_chair ?></td>
         <td></td>
-        <td colspan="2">MA. RHODA A. ODELMO</td>
+        <td colspan="2"><?= bac_chair ?></td>
         <td></td>
         <td colspan="2"></td>
     </tr>
