@@ -1,9 +1,9 @@
 <?php
 require_once '../../core/config.php';
 
-//$fetch = $mysqli_connect->query("SELECT * from tbl_items ORDER BY item_name ASC") or die($mysqli_connect->error);
+$fetch = $mysqli_connect->query("SELECT * from tbl_items ORDER BY item_name ASC") or die($mysqli_connect->error);
 
-$response['data'] = array();
+// $response['data'] = array();
 
 // while( $row = $fetch->fetch_array() ){
 // 	$list = array();
@@ -17,4 +17,4 @@ $response['data'] = array();
 // 	array_push($response['data'], $list);
 // }
 
-echo "ss";// json_encode($response);
+echo $fetch->fetch_array();
