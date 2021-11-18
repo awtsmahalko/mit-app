@@ -15,7 +15,7 @@ if(isset($data->user_id) && !empty($data->user_id) ){
 
 	$response = array();
 
-	$fetch_rows = $mysqli_connect->query("SELECT * from tbl_purchase_order_header ORDER BY po_date DESC ") or die(mysqli_error());
+	$fetch_rows = $mysqli_connect->query("SELECT * from tbl_purchase_order_header ORDER BY po_date DESC ") or die($mysqli_connect->error);
 	while($row = $fetch_rows->fetch_array()){
 		$list = array();
 
@@ -34,5 +34,3 @@ if(isset($data->user_id) && !empty($data->user_id) ){
 	echo json_encode($response);
 	
 }
-
-?>

@@ -7,7 +7,7 @@ if(isset($_POST['id'])){
 	$keyword = $_POST['keyword'];
 
 
-	$fetch_row = $mysqli_connect->query("SELECT * from $table where $keyword='$id'") or die(mysqli_error());
+	$fetch_row = $mysqli_connect->query("SELECT * from $table where $keyword='$id'") or die($mysqli_connect->error);
 
 	$response['data'] = array();
 
@@ -19,5 +19,3 @@ if(isset($_POST['id'])){
 	$mysqli_connect->close();
 	
 }
-
-?>

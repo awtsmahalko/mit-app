@@ -8,7 +8,7 @@ if(isset($_POST['id'])){
 
 
 	foreach ($_POST['id'] as $values) {
-		$sql = $mysqli_connect->query("DELETE from $table where $keyword='$values' ") or die(mysqli_error());
+		$sql = $mysqli_connect->query("DELETE from $table where $keyword='$values' ") or die($mysqli_connect->error);
 		
 	}
 
@@ -21,5 +21,3 @@ if(isset($_POST['id'])){
 	$mysqli_connect->close();
 	
 }
-
-?>

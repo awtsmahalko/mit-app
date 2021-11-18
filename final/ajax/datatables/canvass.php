@@ -1,7 +1,7 @@
 <?php
 require_once '../../core/config.php';
 
-$fetch = $mysqli_connect->query("SELECT * from tbl_canvass_header ORDER BY date_modified ASC") or die(mysqli_error());
+$fetch = $mysqli_connect->query("SELECT * from tbl_canvass_header ORDER BY date_modified ASC") or die($mysqli_connect->error);
 
 $response['data'] = array();
 
@@ -11,7 +11,7 @@ while ($row = $fetch->fetch_array()) {
     $list['id'] = $row['canvass_id'];
     $list['canvass_status'] = $row['canvass_status'];
     $list['pr_no'] = getData("pr_no", "tbl_purchase_request_header", "pr_id", $row['pr_id']);
-    $list['dates'] = $row['canvass_date'] == '1970-01-01'?"":$row['canvass_date'];
+    $list['dates'] = $row['canvass_date'] == '1970-01-01' ? "" : $row['canvass_date'];
     $list['supplier'] = fetchAssignSupplier($row['canvass_id']);
     $list['by'] = getUser($row['user_id']);
     $list['status'] = $row['canvass_status'] == 'S' ? "<span class='badge badge-danger'>Saved</span>" : "<span class='badge badge-success'>Finished</span>";

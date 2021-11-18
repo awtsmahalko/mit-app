@@ -1,9 +1,9 @@
 <?php
-$fetch = $mysqli_connect->query("SELECT * from tbl_purchase_request_header WHERE pr_id = '$pr_id'") or die(mysqli_error());
+$fetch = $mysqli_connect->query("SELECT * from tbl_purchase_request_header WHERE pr_id = '$pr_id'") or die($mysqli_connect->error);
 $pr_row = $fetch->fetch_array();
 
 
-$fetch_details = $mysqli_connect->query("SELECT * from tbl_purchase_request_details WHERE pr_id = '$pr_id'") or die(mysqli_error());
+$fetch_details = $mysqli_connect->query("SELECT * from tbl_purchase_request_details WHERE pr_id = '$pr_id'") or die($mysqli_connect->error);
 $count_details = $fetch_details->num_rows;
 
 $explode_pr_no = explode("-", $pr_row['pr_no']);
@@ -18,12 +18,12 @@ $html_message = "
     <tr>
         <td colspan='4'>Department of Education</td>
         <td colspan='2'>Name of Project :</td>
-        <td colspan='4' style='border-bottom:1px solid;'>".strtoupper($pr_row['pr_mode'])."</td>
+        <td colspan='4' style='border-bottom:1px solid;'>" . strtoupper($pr_row['pr_mode']) . "</td>
     </tr>
     <tr>
         <td colspan='4'>Region VI - Western Visayas</td>
         <td colspan='2'></td>
-        <td colspan='4' style='border-bottom:1px solid;'>HBIS - ".strtoupper($pr_row['pr_department']) ."</td>
+        <td colspan='4' style='border-bottom:1px solid;'>HBIS - " . strtoupper($pr_row['pr_department']) . "</td>
     </tr>
     <tr>
         <td colspan='4'>DIVISION OF SAGAY CITY</td>
@@ -42,7 +42,7 @@ $html_message = "
         <td colspan='3' style='border-bottom:1px solid;'></td>
         <td colspan='5'></td>
         <td align='right'>Date :</td>
-        <td style='font-size: 8pt;border-bottom:1px solid;text-align:center;'>".date('F d, Y',strtotime("$pr_row[pr_date] + 1 day"))."</td>
+        <td style='font-size: 8pt;border-bottom:1px solid;text-align:center;'>" . date('F d, Y', strtotime("$pr_row[pr_date] + 1 day")) . "</td>
     </tr>
     <tr>
         <td colspan='3' style='border-bottom:1px solid;'></td>
@@ -111,9 +111,9 @@ $html_message = "
         <td style='border:1px solid;'>Total Price</td>
     </tr>";
 
-    $count_det = 1;
-    while ($row_det = $fetch_details->fetch_array()) {
-        $html_message .= '<tr align="center">
+$count_det = 1;
+while ($row_det = $fetch_details->fetch_array()) {
+    $html_message .= '<tr align="center">
                     <td style="border:1px solid;">' . $count_det++ . '</td>
                     <td style="border:1px solid;text-align:left;" colspan="5">' . getItem($row_det['item_id']) . '</td>
                     <td style="border:1px solid;">' . $row_det['qty'] . '</td>
@@ -121,13 +121,13 @@ $html_message = "
                     <td style="border:1px solid;"></td>
                     <td style="border:1px solid;"></td>
                 </tr>';
-    }
+}
 
-    $tr_no = 20;
-    $tr_after = 6;
-    $left_tr = $tr_no - $count_details;
-    for ($i = 0; $i < $left_tr; $i++) {
-        $html_message .= '<tr align="center">
+$tr_no = 20;
+$tr_after = 6;
+$left_tr = $tr_no - $count_details;
+for ($i = 0; $i < $left_tr; $i++) {
+    $html_message .= '<tr align="center">
                     <td style="border:1px solid;">&nbsp;</td>
                     <td style="border:1px solid;text-align:left;" colspan="5"></td>
                     <td style="border:1px solid;"></td>
@@ -135,16 +135,16 @@ $html_message = "
                     <td style="border:1px solid;"></td>
                     <td style="border:1px solid;"></td>
                 </tr>';
-    }
-    for ($i = 0; $i < $tr_after; $i++) {
-        $html_message .= '<tr align="center">
+}
+for ($i = 0; $i < $tr_after; $i++) {
+    $html_message .= '<tr align="center">
                     <td style="border:1px solid;">&nbsp;</td>
                     <td style="border:1px solid;text-align:left;" colspan="5"></td>
                     <td style="border:1px solid;" colspan="3"></td>
                     <td style="border:1px solid;"></td>
                 </tr>';
-    }
-    $html_message .= "
+}
+$html_message .= "
     <tr align='center' style='border:1px solid;border-bottom:2px solid;'>
         <td colspan='10'>&nbsp;</td>
     </tr>
@@ -189,4 +189,4 @@ $html_message = "
         <td colspan='4' style='border-top: 1px solid;'>Date</td>
     </tr>
 </table>";
- return $html_message;
+return $html_message;

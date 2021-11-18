@@ -9,13 +9,13 @@ if(isset($_POST['user_fname'])){
 	$username = $mysqli_connect->real_escape_string($_POST['username']);
 	$date = getCurrentDate();
 	
-	$fetch_count_rows = $mysqli_connect->query("SELECT count(user_id) from tbl_users where user_fname='$user_fname' and user_mname='$user_mname' and user_lname = '$user_lname' and user_id != '$user_id' ") or die(mysqli_error());
+	$fetch_count_rows = $mysqli_connect->query("SELECT count(user_id) from tbl_users where user_fname='$user_fname' and user_mname='$user_mname' and user_lname = '$user_lname' and user_id != '$user_id' ") or die($mysqli_connect->error);
 	$count_rows = $fetch_count_rows->fetch_array();
 
 	if($count_rows[0] > 0){
 		echo 2;
 	}else{
-		$sql = $mysqli_connect->query("UPDATE `tbl_users` SET `user_fname`='$user_fname',`user_mname`='$user_mname',`user_lname`='$user_lname',`username`='$username',`date_modified`='$date' WHERE user_id='$user_id'") or die(mysqli_error());
+		$sql = $mysqli_connect->query("UPDATE `tbl_users` SET `user_fname`='$user_fname',`user_mname`='$user_mname',`user_lname`='$user_lname',`username`='$username',`date_modified`='$date' WHERE user_id='$user_id'") or die($mysqli_connect->error);
 
 		if($sql){
 			echo 1;
@@ -32,5 +32,3 @@ if(isset($_POST['user_fname'])){
 	$mysqli_connect->close();
 	
 }
-
-?>

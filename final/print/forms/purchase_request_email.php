@@ -1,9 +1,9 @@
 <?php
-$fetch = $mysqli_connect->query("SELECT * from tbl_purchase_request_header WHERE pr_id = '$pr_id'") or die(mysqli_error());
+$fetch = $mysqli_connect->query("SELECT * from tbl_purchase_request_header WHERE pr_id = '$pr_id'") or die($mysqli_connect->error);
 $pr_row = $fetch->fetch_array();
 
 
-$fetch_details = $mysqli_connect->query("SELECT * from tbl_purchase_request_details WHERE pr_id = '$pr_id'") or die(mysqli_error());
+$fetch_details = $mysqli_connect->query("SELECT * from tbl_purchase_request_details WHERE pr_id = '$pr_id'") or die($mysqli_connect->error);
 $count_details = $fetch_details->num_rows;
 
 $return = "

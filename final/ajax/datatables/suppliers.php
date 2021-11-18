@@ -1,7 +1,7 @@
 <?php
 require_once '../../core/config.php';
 
-$fetch = $mysqli_connect->query("SELECT * from tbl_suppliers ORDER BY supplier_name ASC") or die(mysqli_error());
+$fetch = $mysqli_connect->query("SELECT * from tbl_suppliers ORDER BY supplier_name ASC") or die($mysqli_connect->error);
 
 $response['data'] = array();
 

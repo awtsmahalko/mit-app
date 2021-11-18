@@ -19,13 +19,13 @@ if(isset($data->user_id) && !empty($data->user_id) ){
 
     $release_year   = date('Y', strtotime($release_date));
     $release_ym     = date('Y-m', strtotime($release_date));
-    $fetch_batch    = $mysqli_connect->query("SELECT MAX(release_batch) from tbl_release_header where YEAR(release_date) = '$release_year'") or die(mysqli_error());
+    $fetch_batch    = $mysqli_connect->query("SELECT MAX(release_batch) from tbl_release_header where YEAR(release_date) = '$release_year'") or die($mysqli_connect->error);
     $release_batch_row  = $fetch_batch->fetch_array();
     $release_batch  = $release_batch_row[0] + 1;
 
     $release_no = $release_ym . "-" . sprintf("%03d", $release_batch) . "-" . $department . "-ISSUE";
 
-    $fetch_rows = $mysqli_connect->query("SELECT count(release_id) from tbl_release_header where release_no='$release_no'") or die(mysqli_error());
+    $fetch_rows = $mysqli_connect->query("SELECT count(release_id) from tbl_release_header where release_no='$release_no'") or die($mysqli_connect->error);
     $count_rows = $fetch_rows->fetch_array();
     if ($count_rows[0] > 0) {
         $response['data'] = 2;
@@ -45,5 +45,3 @@ if(isset($data->user_id) && !empty($data->user_id) ){
     echo json_encode($response);
 	
 }
-
-?>

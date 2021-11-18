@@ -13,16 +13,16 @@ if(isset($data->user_id) && !empty($data->user_id) ){
 	
 	$user_id = $mysqli_connect->real_escape_string($data->user_id);
 
-	$fetch_total_pr = $mysqli_connect->query("SELECT count(pr_id) from tbl_purchase_request_header ") or die(mysqli_error());
+	$fetch_total_pr = $mysqli_connect->query("SELECT count(pr_id) from tbl_purchase_request_header ") or die($mysqli_connect->error);
 	$count_total_pr = $fetch_total_pr->fetch_array();
 
-	$fetch_total_pending_pr = $mysqli_connect->query("SELECT count(pr_id) from tbl_purchase_request_header where pr_status='P' ") or die(mysqli_error());
+	$fetch_total_pending_pr = $mysqli_connect->query("SELECT count(pr_id) from tbl_purchase_request_header where pr_status='P' ") or die($mysqli_connect->error);
 	$count_total_pending_pr = $fetch_total_pending_pr->fetch_array();
 
-	$fetch_total_finished_po = $mysqli_connect->query("SELECT count(po_id) from tbl_purchase_order_header where po_status='FS' ") or die(mysqli_error());
+	$fetch_total_finished_po = $mysqli_connect->query("SELECT count(po_id) from tbl_purchase_order_header where po_status='FS' ") or die($mysqli_connect->error);
 	$count_total_finished_po = $fetch_total_finished_po->fetch_array();
 
-	$fetch_total_release_stocks = $mysqli_connect->query("SELECT count(release_id) from tbl_release_header where release_status='F' ") or die(mysqli_error());
+	$fetch_total_release_stocks = $mysqli_connect->query("SELECT count(release_id) from tbl_release_header where release_status='F' ") or die($mysqli_connect->error);
 	$count_total_release_stocks = $fetch_total_release_stocks->fetch_array();
 
 	$response = array();
@@ -35,5 +35,3 @@ if(isset($data->user_id) && !empty($data->user_id) ){
 	echo json_encode($response);
 	
 }
-
-?>

@@ -13,7 +13,7 @@ if (isset($_POST['hidden_id'])) {
         $table = $rr_id > 0  ? "tbl_receiving_details" : "tbl_purchase_order_details";
         $param = $rr_id > 0  ? "rr_id = '$rr_id'" : "po_id = '$po_id' AND serve_status = 0";
 
-        $fetch = $mysqli_connect->query("SELECT * from $table WHERE $param") or die(mysqli_error());
+        $fetch = $mysqli_connect->query("SELECT * from $table WHERE $param") or die($mysqli_connect->error);
         $response['item'] = array();
         while ($row = $fetch->fetch_array()) {
             $list = array();
@@ -31,7 +31,7 @@ if (isset($_POST['hidden_id'])) {
             array_push($response['item'], $list);
         }
     } else if ($module == 'fetch-rr-data') {
-        $fetch = $mysqli_connect->query("SELECT * from tbl_receiving_header WHERE rr_id = '$rr_id'") or die(mysqli_error());
+        $fetch = $mysqli_connect->query("SELECT * from tbl_receiving_header WHERE rr_id = '$rr_id'") or die($mysqli_connect->error);
         $row = $fetch->fetch_array();
 
         $supplier_id            = getData("supplier_id", "tbl_purchase_order_header", "pr_id", $row['pr_id']);
@@ -84,7 +84,7 @@ if (isset($_POST['hidden_id'])) {
 function getReceived($po_id, $item_id, $packaging_id)
 {
     global $mysqli_connect;
-    $fetch_rr = $mysqli_connect->query("SELECT SUM(qty) FROM tbl_receiving_header AS h, tbl_receiving_details AS d WHERE h.rr_id = d.rr_id AND po_id = '$po_id' AND item_id = '$item_id' AND packaging_id = '$packaging_id'") or die(mysqli_error());
+    $fetch_rr = $mysqli_connect->query("SELECT SUM(qty) FROM tbl_receiving_header AS h, tbl_receiving_details AS d WHERE h.rr_id = d.rr_id AND po_id = '$po_id' AND item_id = '$item_id' AND packaging_id = '$packaging_id'") or die($mysqli_connect->error);
     $row_rr = $fetch_rr->fetch_array();
     return $row_rr[0];
 }
@@ -92,17 +92,17 @@ function getReceived($po_id, $item_id, $packaging_id)
 function updatePoDetail($po_id, $item_id, $packaging_id)
 {
     global $mysqli_connect;
-    $mysqli_connect->query("UPDATE tbl_purchase_order_details SET serve_status = 1 WHERE po_id = '$po_id' AND item_id = '$item_id' AND packaging_id = '$packaging_id'") or die(mysqli_error());
+    $mysqli_connect->query("UPDATE tbl_purchase_order_details SET serve_status = 1 WHERE po_id = '$po_id' AND item_id = '$item_id' AND packaging_id = '$packaging_id'") or die($mysqli_connect->error);
 }
 function updatePoStatus($po_id, $me)
 {
     global $mysqli_connect;
     $po_status = $me > 0 ? "P" : "FS";
-    $mysqli_connect->query("UPDATE tbl_purchase_order_header SET po_status = '$po_status' WHERE po_id = '$po_id'") or die(mysqli_error());
+    $mysqli_connect->query("UPDATE tbl_purchase_order_header SET po_status = '$po_status' WHERE po_id = '$po_id'") or die($mysqli_connect->error);
 }
 function updateRRStatus($rr_id, $me)
 {
     global $mysqli_connect;
     $rr_status = $me > 0 ? "F" : "FS";
-    $mysqli_connect->query("UPDATE tbl_receiving_header SET rr_status = '$rr_status' WHERE rr_id = '$rr_id'") or die(mysqli_error());
+    $mysqli_connect->query("UPDATE tbl_receiving_header SET rr_status = '$rr_status' WHERE rr_id = '$rr_id'") or die($mysqli_connect->error);
 }

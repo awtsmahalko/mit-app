@@ -13,7 +13,7 @@
                         <select style="width:100%" class='form-control select2' name='pr_id' id='pr_id' onchange="fetchSuppliers()" required>
                             <option value="">-- Please select --</option>
                             <?php
-                            $fetch = $mysqli_connect->query("SELECT pr_id,pr_no from tbl_purchase_request_header WHERE pr_status = 'A' ORDER BY date_modified DESC") or die(mysqli_error());
+                            $fetch = $mysqli_connect->query("SELECT pr_id,pr_no from tbl_purchase_request_header WHERE pr_status = 'A' ORDER BY date_modified DESC") or die($mysqli_connect->error);
 
                             while ($row = $fetch->fetch_array()) {
                                 echo '<option value="' . $row['pr_id'] . '">' . $row['pr_no'] . '</option>';

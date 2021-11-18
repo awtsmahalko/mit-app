@@ -1,7 +1,7 @@
 <?php
 require_once '../../core/config.php';
 $release_id = $_REQUEST['id'];
-$fetch = $mysqli_connect->query("SELECT * from tbl_release_details WHERE release_id = '$release_id'") or die(mysqli_error());
+$fetch = $mysqli_connect->query("SELECT * from tbl_release_details WHERE release_id = '$release_id'") or die($mysqli_connect->error);
 
 $response['data'] = array();
 

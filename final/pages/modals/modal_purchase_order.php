@@ -17,7 +17,7 @@
                                     <option value="">-- Please select --</option>
                                     <!--<option value="S">Super admin</option>-->
                                     <?php
-                                    $fetch = $mysqli_connect->query("SELECT pr_id,canvass_id from tbl_canvass_header WHERE canvass_status = 'F' ORDER BY date_modified DESC") or die(mysqli_error());
+                                    $fetch = $mysqli_connect->query("SELECT pr_id,canvass_id from tbl_canvass_header WHERE canvass_status = 'F' ORDER BY date_modified DESC") or die($mysqli_connect->error);
 
                                     while ($row = $fetch->fetch_array()) {
                                         echo '<option value="' . $row['canvass_id'] . '">' . getData("pr_no", "tbl_purchase_request_header", "pr_id", $row['pr_id']) . '</option>';

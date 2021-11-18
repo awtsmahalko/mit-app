@@ -21,7 +21,7 @@ if(isset($data->pr_id) && $data->pr_id > 0){
 
         /*$email_message = include '../../print/forms/purchase_request_email.php';
 
-        $fetch_bac = $mysqli_connect->query("SELECT * FROM tbl_users WHERE user_category = 'BAC'") or die(mysqli_error());
+        $fetch_bac = $mysqli_connect->query("SELECT * FROM tbl_users WHERE user_category = 'BAC'") or die($mysqli_connect->error);
         while ($row = $fetch_bac->fetch_array()) {
             $message = "New PR No. " . getPRNum($pr_id);
             sendSms($row['user_contact_no'], $message);
@@ -33,5 +33,3 @@ if(isset($data->pr_id) && $data->pr_id > 0){
     }
 
 }
-
-?>

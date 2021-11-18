@@ -20,7 +20,7 @@ if (isset($_POST['hidden_id'])) {
         $user_id        = $_SESSION['user_id'];
         $canvass_status = 'S';
 
-        $fetch_rows = $mysqli_connect->query("SELECT count(pr_id) from $tbl_header where pr_id='$pr_id'") or die(mysqli_error());
+        $fetch_rows = $mysqli_connect->query("SELECT count(pr_id) from $tbl_header where pr_id='$pr_id'") or die($mysqli_connect->error);
         $count_rows = $fetch_rows->fetch_array();
 
         if ($count_rows[0] > 0) {
@@ -44,7 +44,7 @@ if (isset($_POST['hidden_id'])) {
         }
     } else if ($module == 'fetch-canvass') {
 
-        $fetch = $mysqli_connect->query("SELECT item_id,packaging_id,qty,h.pr_id,canvass_status from $tbl_pr_det AS d,$tbl_header AS h WHERE h.pr_id = d.pr_id AND h.canvass_id = '$canvass_id'") or die(mysqli_error());
+        $fetch = $mysqli_connect->query("SELECT item_id,packaging_id,qty,h.pr_id,canvass_status from $tbl_pr_det AS d,$tbl_header AS h WHERE h.pr_id = d.pr_id AND h.canvass_id = '$canvass_id'") or die($mysqli_connect->error);
         $response['item'] = array();
         while ($row = $fetch->fetch_array()) {
             $list = array();
@@ -66,19 +66,19 @@ if (isset($_POST['hidden_id'])) {
         $sql_no_data = "SELECT supplier_id from tbl_canvass_suppliers WHERE canvass_id = '$canvass_id'";
 
         $query_sup = $canvass_status == 'F' ? $sql_with_data : $sql_no_data;
-        $fetch = $mysqli_connect->query($query_sup) or die(mysqli_error());
+        $fetch = $mysqli_connect->query($query_sup) or die($mysqli_connect->error);
         $response['supplier'] = array();
         while ($row = $fetch->fetch_array()) {
             $list = array();
 
             $list['id'] = $row['supplier_id'];
-            $list['name'] = getSupplier($row['supplier_id']);//$row['supplier_name'];
+            $list['name'] = getSupplier($row['supplier_id']); //$row['supplier_name'];
 
             array_push($response['supplier'], $list);
         }
 
         if ($canvass_status == 'F') {
-            $fetch = $mysqli_connect->query("SELECT * from $tbl_detail WHERE canvass_id = '$canvass_id' ORDER BY item_id,packaging_id,supplier_id ASC") or die(mysqli_error());
+            $fetch = $mysqli_connect->query("SELECT * from $tbl_detail WHERE canvass_id = '$canvass_id' ORDER BY item_id,packaging_id,supplier_id ASC") or die($mysqli_connect->error);
             while ($row = $fetch->fetch_array()) {
                 $response['costs'][$row['item_id']][$row['packaging_id']][$row['supplier_id']] = $row['cost'];
             }
@@ -104,7 +104,7 @@ if (isset($_POST['hidden_id'])) {
             $pr_no_ = getPRNum($pr_id);
             $message_email = include '../print/forms/bac_resolution_2_email.php';
 
-            $fetch_bac = $mysqli_connect->query("SELECT * FROM tbl_users WHERE user_category = 'BAC'") or die(mysqli_error());
+            $fetch_bac = $mysqli_connect->query("SELECT * FROM tbl_users WHERE user_category = 'BAC'") or die($mysqli_connect->error);
             while ($row = $fetch_bac->fetch_array()) {
                 $message_sms = "Abstract of Canvass of PR No. $pr_no_ is ready";
                 sendSms($row['user_contact_no'], $message_sms);
@@ -121,7 +121,7 @@ function getPrQty($pr_id, $item_id, $packaging_id)
 {
     global $mysqli_connect;
 
-    $fetch_rows = $mysqli_connect->query("SELECT qty from tbl_purchase_request_details where pr_id='$pr_id' AND item_id = '$item_id' AND packaging_id = '$packaging_id'") or die(mysqli_error());
+    $fetch_rows = $mysqli_connect->query("SELECT qty from tbl_purchase_request_details where pr_id='$pr_id' AND item_id = '$item_id' AND packaging_id = '$packaging_id'") or die($mysqli_connect->error);
     $count_rows = $fetch_rows->fetch_array();
     return $count_rows['qty'];
 }

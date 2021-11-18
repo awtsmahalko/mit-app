@@ -16,7 +16,7 @@ if(isset($data->username) && !empty($data->username) ){
 
 	$date = getCurrentDate();
 
-	$fetch_rows = $mysqli_connect->query("SELECT user_id, user_category from tbl_users where username='$username' and password=md5('$password') ") or die(mysqli_error());
+	$fetch_rows = $mysqli_connect->query("SELECT user_id, user_category from tbl_users where username='$username' and password=md5('$password') ") or die($mysqli_connect->error);
 	$row = $fetch_rows->fetch_array();
 
 	$response = array();
@@ -36,5 +36,3 @@ if(isset($data->username) && !empty($data->username) ){
 	echo json_encode($response);
 	
 }
-
-?>

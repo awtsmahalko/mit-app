@@ -126,7 +126,7 @@
                                 <select style="width:100%" class='form-control select2' name='item_id' id='item_id' onchange="changeItem()" required>
                                     <option value="">-- Please select --</option>
                                     <?php
-                                    $fetch = $mysqli_connect->query("SELECT item_id,item_name from tbl_items ORDER BY item_name ASC") or die(mysqli_error());
+                                    $fetch = $mysqli_connect->query("SELECT item_id,item_name from tbl_items ORDER BY item_name ASC") or die($mysqli_connect->error);
 
                                     while ($row = $fetch->fetch_array()) {
                                         echo '<option value="' . $row['item_id'] . '">' . $row['item_name'] . '</option>';

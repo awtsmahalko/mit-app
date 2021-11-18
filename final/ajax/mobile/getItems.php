@@ -11,7 +11,7 @@ $data = json_decode(file_get_contents("php://input"));
 
 $response = array();
 
-$fetch_rows = $mysqli_connect->query("SELECT ip.ip_id, i.item_name, p.packaging_name, p.packaging_id, i.item_id FROM tbl_items i LEFT JOIN `tbl_items_packaging` ip ON ip.item_id=i.item_id LEFT JOIN tbl_packaging p ON ip.packaging_id=p.packaging_id WHERE ip.ip_id > 0 ORDER BY i.item_name ASC") or die(mysqli_error());
+$fetch_rows = $mysqli_connect->query("SELECT ip.ip_id, i.item_name, p.packaging_name, p.packaging_id, i.item_id FROM tbl_items i LEFT JOIN `tbl_items_packaging` ip ON ip.item_id=i.item_id LEFT JOIN tbl_packaging p ON ip.packaging_id=p.packaging_id WHERE ip.ip_id > 0 ORDER BY i.item_name ASC") or die($mysqli_connect->error);
 while($row = $fetch_rows->fetch_array()){
 	$list = array();
 
@@ -25,5 +25,3 @@ while($row = $fetch_rows->fetch_array()){
 }
 
 echo json_encode($response);
-
-?>

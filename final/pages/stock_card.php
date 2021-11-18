@@ -14,7 +14,7 @@
                             <option value="">-- Please select --</option>
                             <!--<option value="S">Super admin</option>-->
                             <?php
-                            $fetch = $mysqli_connect->query("SELECT item_id,item_name from tbl_items ORDER BY item_name ASC") or die(mysqli_error());
+                            $fetch = $mysqli_connect->query("SELECT item_id,item_name from tbl_items ORDER BY item_name ASC") or die($mysqli_connect->error);
 
                             while ($row = $fetch->fetch_array()) {
                                 echo '<option value="' . $row['item_id'] . '">' . $row['item_name'] . '</option>';

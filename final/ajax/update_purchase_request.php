@@ -22,7 +22,7 @@ if (isset($_POST['hidden_id'])) {
         $pr_ym          = date('Y-m', strtotime($pr_year . "-" . $pr_mo . "-01"));
         $pr_no          = $pr_ym . "-" . sprintf("%03d", $pr_batch) . "-" . $pr_department;
 
-        $fetch_rows = $mysqli_connect->query("SELECT count(pr_id) from tbl_purchase_request_header where pr_no='$pr_no'") or die(mysqli_error());
+        $fetch_rows = $mysqli_connect->query("SELECT count(pr_id) from tbl_purchase_request_header where pr_no='$pr_no'") or die($mysqli_connect->error);
         $count_rows = $fetch_rows->fetch_array();
 
         if ($count_rows[0] > 0) {
@@ -76,14 +76,14 @@ if (isset($_POST['hidden_id'])) {
         }
     } else if ($module == 'fetch-packaging') {
         $item_id = $_POST['item_id'];
-        $fetch = $mysqli_connect->query("SELECT a.packaging_id,packaging_name from tbl_items_packaging AS a,tbl_packaging AS p WHERE a.packaging_id = p.packaging_id AND a.item_id = '$item_id' ORDER BY actual_qty ASC") or die(mysqli_error());
+        $fetch = $mysqli_connect->query("SELECT a.packaging_id,packaging_name from tbl_items_packaging AS a,tbl_packaging AS p WHERE a.packaging_id = p.packaging_id AND a.item_id = '$item_id' ORDER BY actual_qty ASC") or die($mysqli_connect->error);
         $data = "<option value=''>&mdash; Select &mdash;</option>";
         while ($row = $fetch->fetch_array()) {
             $data .= '<option value="' . $row['packaging_id'] . '">' . $row['packaging_name'] . '</option>';
         }
         $response['data'] = $data;
     } else if ($module == 'fetch-pending-pr') {
-        $fetch = $mysqli_connect->query("SELECT * FROM tbl_purchase_request_header WHERE pr_status = 'P' ORDER BY date_modified DESC") or die(mysqli_error());
+        $fetch = $mysqli_connect->query("SELECT * FROM tbl_purchase_request_header WHERE pr_status = 'P' ORDER BY date_modified DESC") or die($mysqli_connect->error);
         $data = "<option value=''>&mdash; Select &mdash;</option>";
         while ($row = $fetch->fetch_array()) {
             $data .= '<option value="' . $row['pr_id'] . '">' . $row['pr_no'] . '</option>';
@@ -98,7 +98,7 @@ if (isset($_POST['hidden_id'])) {
             $sup_group = array();
             $data = "";
         }
-        $fetch = $mysqli_connect->query("SELECT * FROM tbl_suppliers ORDER BY supplier_name ASC") or die(mysqli_error());
+        $fetch = $mysqli_connect->query("SELECT * FROM tbl_suppliers ORDER BY supplier_name ASC") or die($mysqli_connect->error);
         while ($row = $fetch->fetch_array()) {
             $selected = in_array($row['supplier_id'], $sup_group) ? "selected" : '';
             $data .= '<option ' . $selected . ' value="' . $row['supplier_id'] . '">' . $row['supplier_name'] . '</option>';
@@ -110,7 +110,7 @@ if (isset($_POST['hidden_id'])) {
         $qty = $_POST['qty'];
         $cost = $_POST['cost'];
 
-        $fetch_rows = $mysqli_connect->query("SELECT count(pr_id) from tbl_purchase_request_details where pr_id='$pr_id' AND item_id = '$item_id' AND packaging_id = '$packaging_id'") or die(mysqli_error());
+        $fetch_rows = $mysqli_connect->query("SELECT count(pr_id) from tbl_purchase_request_details where pr_id='$pr_id' AND item_id = '$item_id' AND packaging_id = '$packaging_id'") or die($mysqli_connect->error);
         $count_rows = $fetch_rows->fetch_array();
         if ($count_rows[0] > 0) {
             $response['data'] = 2;
@@ -131,7 +131,7 @@ if (isset($_POST['hidden_id'])) {
 
             $email_message = include '../print/forms/purchase_request_email.php';
 
-            $fetch_bac = $mysqli_connect->query("SELECT * FROM tbl_users WHERE user_category = 'BAC'") or die(mysqli_error());
+            $fetch_bac = $mysqli_connect->query("SELECT * FROM tbl_users WHERE user_category = 'BAC'") or die($mysqli_connect->error);
             while ($row = $fetch_bac->fetch_array()) {
                 $message = "New PR No. " . getPRNum($pr_id);
                 sendSms($row['user_contact_no'], $message);

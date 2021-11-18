@@ -14,7 +14,7 @@ if (isset($_POST['hidden_id'])) {
 	$date = getCurrentDate();
 
 	if ($module == 'add') {
-		$fetch_rows = $mysqli_connect->query("SELECT count(supplier_id) from tbl_suppliers where supplier_name='$supplier_name' and supplier_address='$supplier_address' ") or die(mysqli_error());
+		$fetch_rows = $mysqli_connect->query("SELECT count(supplier_id) from tbl_suppliers where supplier_name='$supplier_name' and supplier_address='$supplier_address' ") or die($mysqli_connect->error);
 		$count_rows = $fetch_rows->fetch_array();
 
 		if ($count_rows[0] > 0) {
@@ -29,13 +29,13 @@ if (isset($_POST['hidden_id'])) {
 			}
 		}
 	} else {
-		$fetch_count_rows = $mysqli_connect->query("SELECT count(supplier_id) from tbl_suppliers where supplier_name='$supplier_name' and supplier_address='$supplier_address' and supplier_id != '$supplier_id' ") or die(mysqli_error());
+		$fetch_count_rows = $mysqli_connect->query("SELECT count(supplier_id) from tbl_suppliers where supplier_name='$supplier_name' and supplier_address='$supplier_address' and supplier_id != '$supplier_id' ") or die($mysqli_connect->error);
 		$count_rows = $fetch_count_rows->fetch_array();
 
 		if ($count_rows[0] > 0) {
 			echo 2;
 		} else {
-			$sql = $mysqli_connect->query("UPDATE `tbl_suppliers` SET `supplier_name`='$supplier_name',`supplier_owner`='$supplier_owner',`supplier_address`='$supplier_address',`supplier_contact_no`='$supplier_contact_no',`supplier_email`='$supplier_email',`supplier_tin` = '$supplier_tin',`remarks`='$remarks',`date_modified`='$date' WHERE supplier_id='$supplier_id'") or die(mysqli_error());
+			$sql = $mysqli_connect->query("UPDATE `tbl_suppliers` SET `supplier_name`='$supplier_name',`supplier_owner`='$supplier_owner',`supplier_address`='$supplier_address',`supplier_contact_no`='$supplier_contact_no',`supplier_email`='$supplier_email',`supplier_tin` = '$supplier_tin',`remarks`='$remarks',`date_modified`='$date' WHERE supplier_id='$supplier_id'") or die($mysqli_connect->error);
 
 			if ($sql) {
 				echo 1;

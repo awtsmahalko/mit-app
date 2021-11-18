@@ -11,7 +11,7 @@ $data = json_decode(file_get_contents("php://input"));
 
 $response = array();
 
-$fetch_rows = $mysqli_connect->query("SELECT * from `tbl_suppliers` ORDER BY supplier_name ASC") or die(mysqli_error());
+$fetch_rows = $mysqli_connect->query("SELECT * from `tbl_suppliers` ORDER BY supplier_name ASC") or die($mysqli_connect->error);
 while($row = $fetch_rows->fetch_array()){
 	$list = array();
 
@@ -22,5 +22,3 @@ while($row = $fetch_rows->fetch_array()){
 }
 
 echo json_encode($response);
-
-?>

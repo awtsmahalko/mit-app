@@ -20,7 +20,7 @@ if(isset($data->username) && !empty($data->username) ){
 
 	$date = getCurrentDate();
 
-	$fetch_rows = $mysqli_connect->query("SELECT count(user_id) from tbl_users where username='$username' ") or die(mysqli_error());
+	$fetch_rows = $mysqli_connect->query("SELECT count(user_id) from tbl_users where username='$username' ") or die($mysqli_connect->error);
 	$count_rows = $fetch_rows->fetch_array();
 
 	if($count_rows[0] > 0){
@@ -38,5 +38,3 @@ if(isset($data->username) && !empty($data->username) ){
 	}
 	
 }
-
-?>

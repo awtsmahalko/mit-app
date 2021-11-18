@@ -20,13 +20,13 @@ if(isset($data->barcode) && !empty($data->barcode) ){
 	$packaging_id = $data[1];
 
 
-	$fetch_item = $mysqli_connect->query("SELECT * FROM tbl_items WHERE item_id = '$item_id' ") or die(mysqli_error());
+	$fetch_item = $mysqli_connect->query("SELECT * FROM tbl_items WHERE item_id = '$item_id' ") or die($mysqli_connect->error);
 	$item_row = $fetch_item->fetch_array();
 
-	$fetch_packaging = $mysqli_connect->query("SELECT packaging_id, packaging_name FROM tbl_packaging WHERE packaging_id = '$packaging_id' ") or die(mysqli_error());
+	$fetch_packaging = $mysqli_connect->query("SELECT packaging_id, packaging_name FROM tbl_packaging WHERE packaging_id = '$packaging_id' ") or die($mysqli_connect->error);
 	$packaging_row = $fetch_packaging->fetch_array();
 
-	$fetch_item_packaging = $mysqli_connect->query("SELECT ip_id FROM tbl_items_packaging WHERE item_id = '$item_id' and packaging_id='$packaging_id' ") or die(mysqli_error());
+	$fetch_item_packaging = $mysqli_connect->query("SELECT ip_id FROM tbl_items_packaging WHERE item_id = '$item_id' and packaging_id='$packaging_id' ") or die($mysqli_connect->error);
 	$item_packaging_row = $fetch_item_packaging->fetch_array();
 	
 	$response['ip_id'] = $item_packaging_row['ip_id'];
@@ -44,5 +44,3 @@ if(isset($data->barcode) && !empty($data->barcode) ){
 	echo json_encode($response);
 
 }
-
-?>

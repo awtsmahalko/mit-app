@@ -3,7 +3,7 @@ require_once '../../core/config.php';
 
 $inject = $_SESSION['category'] == 'BAC' ? "WHERE pr_status != 'S'" : "";
 
-$fetch = $mysqli_connect->query("SELECT * from tbl_purchase_request_header $inject ORDER BY date_modified ASC") or die(mysqli_error());
+$fetch = $mysqli_connect->query("SELECT * from tbl_purchase_request_header $inject ORDER BY date_modified ASC") or die($mysqli_connect->error);
 
 $response['data'] = array();
 

@@ -19,7 +19,7 @@ if(isset($data->user_id) && !empty($data->user_id) ){
 
 	$date = getCurrentDate();
 
-	$sql = $mysqli_connect->query("UPDATE tbl_parkings set user_id='$user_id' where user_id='0' and ticket_id='$ticket_id' and ticket_number='$ticket_number' ") or die(mysqli_error());
+	$sql = $mysqli_connect->query("UPDATE tbl_parkings set user_id='$user_id' where user_id='0' and ticket_id='$ticket_id' and ticket_number='$ticket_number' ") or die($mysqli_connect->error);
 
 	if($sql){
 		echo 1;
@@ -28,5 +28,3 @@ if(isset($data->user_id) && !empty($data->user_id) ){
 	}
 	
 }
-
-?>

@@ -3,11 +3,11 @@ require_once '../core/config.php';
 $item_id = $_POST['item_id'];
 $packaging_id = $_POST['packaging_id'];
 
-$fetch_item = $mysqli_connect->query("SELECT * from tbl_items where item_id = '$item_id'") or die(mysqli_error());
+$fetch_item = $mysqli_connect->query("SELECT * from tbl_items where item_id = '$item_id'") or die($mysqli_connect->error);
 $item_row = $fetch_item->fetch_array();
 
 
-$fetch_det = $mysqli_connect->query("SELECT rr_date AS date,pr_id,qty AS receipt_qty,0 AS issue_qty,'' AS issue_office,'IN' AS module,'' AS consume FROM tbl_receiving_details AS d, tbl_receiving_header AS h WHERE h.rr_id = d.rr_id AND item_id = '$item_id' AND packaging_id = '$packaging_id' UNION ALL SELECT release_date AS date,release_no AS pr_id,0 AS receipt_qty,qty AS issue_qty,department AS issue_office,'OUT' AS module,release_days_consume AS consume from tbl_release_details AS d,tbl_release_header AS h where h.release_id = d.release_id AND item_id = '$item_id' AND packaging_id = '$packaging_id' AND release_status = 'F' ORDER BY date ASC") or die(mysqli_error());
+$fetch_det = $mysqli_connect->query("SELECT rr_date AS date,pr_id,qty AS receipt_qty,0 AS issue_qty,'' AS issue_office,'IN' AS module,'' AS consume FROM tbl_receiving_details AS d, tbl_receiving_header AS h WHERE h.rr_id = d.rr_id AND item_id = '$item_id' AND packaging_id = '$packaging_id' UNION ALL SELECT release_date AS date,release_no AS pr_id,0 AS receipt_qty,qty AS issue_qty,department AS issue_office,'OUT' AS module,release_days_consume AS consume from tbl_release_details AS d,tbl_release_header AS h where h.release_id = d.release_id AND item_id = '$item_id' AND packaging_id = '$packaging_id' AND release_status = 'F' ORDER BY date ASC") or die($mysqli_connect->error);
 ?>
 <table style="width:100%;">
     <tr>
