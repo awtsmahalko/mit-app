@@ -5,6 +5,7 @@ include 'config.php';
 <html>
 
 <head>
+    <title>Stored Procedures</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
     <script src="assets/jquery/jquery.min.js"></script>
     <script src="assets/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -20,7 +21,7 @@ include 'config.php';
         <div class="collapse navbar-collapse" id="navbarColor01">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Home</a>
+                    <a class="nav-link" href="index.php">Home</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="triggers.php">Triggers</a>
@@ -48,22 +49,36 @@ include 'config.php';
             </div>
             <div class="col-md-4">
                 <h3>UPDATE</h3>
-                <p></p>
+                <p>CREATE PROCEDURE `update_text`(IN `text_data` VARCHAR(255), IN `text_data_id` INT(11)) NOT DETERMINISTIC NO SQL SQL SECURITY DEFINER BEGIN UPDATE tbl_text SET text = text_data,datetime = NOW() WHERE text_id = text_data_id; END</p>
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" placeholder="Text Data" aria-label="Text Data" aria-describedby="basic-addon2" id="use-update">
+                    <input type="number" class="form-control" placeholder="ID" aria-label="ID" aria-describedby="basic-addon2" id="use-update-id">
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-primary" type="button" onclick="useUpdate()">Use</button>
+                    </div>
+                </div>
             </div>
             <div class="col-md-4">
                 <h3>DELETE</h3>
-                <p></p>
-            </div>
-
-
-            <div class="col-md-4 text-center">
-                <h3>COMMAND</h3>
-                <textarea class="form-control" name="as" id="command" rows="5"></textarea>
-                <div class="form-group-btn">
-                    <button class="btn btn-sm btn-primary" onclick="execute()">EXECUTE</button>
+                <p>CREATE PROCEDURE `delete_text`(IN `text_data_id` INT(11)) NOT DETERMINISTIC NO SQL SQL SECURITY DEFINER BEGIN DELETE FROM tbl_text WHERE text_id = text_data_id; END</p>
+                <div class="input-group mb-3">
+                    <input type="number" class="form-control" placeholder="ID" aria-label="ID" aria-describedby="basic-addon2" id="use-delete-id">
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-primary" type="button" onclick="useDelete()">Use</button>
+                    </div>
                 </div>
             </div>
-            <div class="col-md-8">
+
+
+            <div class="col-md-3 text-center">
+                <h3>COMMAND</h3>
+                <textarea class="form-control" name="as" id="command" rows="5"></textarea>
+            </div>
+            <div class="col-md-3 text-center">
+                <h3>RESPONSE</h3>
+                <textarea class="form-control" name="as" id="response" rows="5"></textarea>
+            </div>
+            <div class="col-md-6">
                 <table class="table table-striped table-bordered">
                     <thead>
                         <tr>
@@ -103,11 +118,58 @@ include 'config.php';
         function useInsert() {
             var use_insert = $("#use-insert").val();
             if (use_insert != '') {
-                $.post("clean.php", {
+                $.post("execute_command.php", {
+                    command: 'insert',
                     text: use_insert
                 }, function(data, status) {
-                    var command = "SET @p0='" + data + "'; CALL insert_text(@p0);";
-                    $("#command").val(command);
+                    var res = JSON.parse(data);
+                    $("#command").html(res.command);
+                    $("#response").html(res.response);
+                    fetchText();
+                });
+                // $.post("clean.php", {
+                //     text: use_insert
+                // }, function(data, status) {
+                //     var command = "SET @p0='" + data + "'; CALL insert_text(@p0);";
+                //     $("#command").val(command);
+                // });
+            } else {
+                $("#command").val("");
+                alert("Please input text");
+            }
+        }
+
+        function useUpdate() {
+            var use_update = $("#use-update").val();
+            var use_id = $("#use-update-id").val() * 1;
+            if (use_update != '' && use_id > 0) {
+                $.post("execute_command.php", {
+                    command: 'update',
+                    text: use_update,
+                    id: use_id
+                }, function(data, status) {
+                    var res = JSON.parse(data);
+                    $("#command").html(res.command);
+                    $("#response").html(res.response);
+                    fetchText();
+                });
+            } else {
+                $("#command").val("");
+                alert("Please input text");
+            }
+        }
+
+        function useDelete() {
+            var use_id = $("#use-delete-id").val() * 1;
+            if (use_id > 0) {
+                $.post("execute_command.php", {
+                    command: 'delete',
+                    id: use_id
+                }, function(data, status) {
+                    var res = JSON.parse(data);
+                    $("#command").html(res.command);
+                    $("#response").html(res.response);
+                    fetchText();
                 });
             } else {
                 $("#command").val("");
