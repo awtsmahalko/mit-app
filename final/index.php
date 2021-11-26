@@ -33,7 +33,7 @@ $page = (isset($_GET['page']) && $_GET['page'] != '') ? $_GET['page'] : '';
   <script src="vendor/select2/js/select2.js"></script>
   <script type="text/javascript" src="js/jquery.qrcode.min.js"></script>
 
-  <script src = "https://code.highcharts.com/highcharts.js"></script>
+  <script src="https://code.highcharts.com/highcharts.js"></script>
   <style type="text/css">
     .input-group-addon {
       padding: 5px;
@@ -77,7 +77,7 @@ $page = (isset($_GET['page']) && $_GET['page'] != '') ? $_GET['page'] : '';
       <footer class="sticky-footer bg-white">
         <div class="container my-auto">
           <div class="copyright text-center my-auto">
-            <span>Procurement and Inventory Management System</span>
+            <span>PIMS - Eduard Rino Q. Carton &copy; 2021</span>
           </div>
         </div>
       </footer>
