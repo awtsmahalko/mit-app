@@ -33,7 +33,7 @@
         <h1>Triggers and Stored Procedures</h1>
         <h2>Demo for (MITM1 203 - Advanced Database Systems)</h2>
         <br>
-        <p>Prepared By:<br>Eduard Rino Q. Carton</p>
+        <p>Prepared By:<br>Group 3 </p>
     </div>
 
 </body>
