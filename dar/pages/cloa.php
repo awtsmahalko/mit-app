@@ -15,8 +15,8 @@ function generateRandomLot($length=5)
 <div class="container-fluid">
 
 <!-- Page Heading -->
-<h1 class="h3 mb-2 text-gray-800">Lands</h1>
-<p class="mb-4">Here you can manage all the Lands</p>
+<h1 class="h3 mb-2 text-gray-800">CLOA</h1>
+<p class="mb-4">Certificate of Land Ownership Award</p>
 
 <!-- DataTales Example -->
 <div class="card shadow mb-4">
@@ -43,36 +43,45 @@ function generateRandomLot($length=5)
                     <tr>
                         <th>#</th>
                         <th></th>
+                        <th>CLOA No.</th>
+                        <th>TCT OR OCT No.</th>
+                        <th>Sequence No.</th>
+                        <th>Date Generated</th>
+                        <th>Date Registered</th>
+                        <th>Date Issued</th>
                         <th>Lot No</th>
                         <th>Survey No</th>
                         <th>Total Area (sqm)</th>
-                        <th>Location of Property</th>
-                        <th>Coordinates</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php
-                        $address = array('Bacolod','Bago','Pulupandan');
-                        for($i=1;$i<4;$i++){
-                            $random_address = array_rand($address,1);
-
-
+                        for($i=1;$i<3;$i++){
+                            $tct = rand(1000,10000);
                             $survey = rand(1000,10000);
                             $lot_area = rand(1,10000);
 
-                            $rand = rand(1,10);
-                            $rand2 = rand(11,15);
-                            $latitud = 10.6464194 * $rand / $rand2;
-                            $longitud = 122.9316874 * $rand / $rand2;
+                            
+                            $timestamp = mt_rand(1, time());
+                            $timestamp2 = mt_rand(1, time());
+                            $timestamp3 = mt_rand(1, time());
+                            $randomDate = date("m/d/Y", $timestamp);
+                            $randomDate2 = date("m/d/Y", $timestamp2);
+                            $randomDate3= date("m/d/Y", $timestamp3);
+
                     ?>
                     <tr>
                         <td><?=$i?></td>
                         <td><center><button class='btn btn-info btn-circle btn-sm'><span class='fa fa-pen'></span></button></center></td>
                         <td><?=generateRandomLot()?></td>
+                        <td><?= $tct?></td>
+                        <td><?= sprintf("%05d",$i)?></td>
+                        <td><?= $randomDate?></td>
+                        <td><?= $randomDate2?></td>
+                        <td><?= $randomDate3?></td>
+                        <td><?=generateRandomLot()?></td>
                         <td><?= $survey?></td>
                         <td><?=number_format($lot_area,2)?> m<sup>2</sup></td>
-                        <td><?= $address[$random_address]?></td>
-                        <td><?= $latitud.','.$longitud ?></td>
                     </tr>
                    <?php } ?>
                 </tbody>

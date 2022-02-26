@@ -146,6 +146,7 @@ function generateRandomName()
                 <thead>
                     <tr>
                         <th>#</th>
+                        <th></th>
                         <th>Name of ARB/s in the existing CCLOA</th>
                         <th>Sex</th>
                         <th>Date of Birth</th>
@@ -167,7 +168,7 @@ function generateRandomName()
                             "<span class='badge badge-danger'>Deceased</span>",
                             "<span class='badge badge-warning'>Transfer Action</span>"
                         );
-                        for($i=1;$i<15;$i++){
+                        for($i=1;$i<5;$i++){
                             $random_gender = array_rand($gender,1);
                             $random_status = array_rand($status,1);
                             $random_doc = array_rand($doc,1);
@@ -181,6 +182,7 @@ function generateRandomName()
                     ?>
                     <tr>
                         <td><?=$i?></td>
+                        <td><center><button class='btn btn-info btn-circle btn-sm'><span class='fa fa-pen'></span></button></center></td>
                         <td><?=generateRandomName()?></td>
                         <td><?= $gender[$random_gender]?></td>
                         <td><?=$randomDate?></td>

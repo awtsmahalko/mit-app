@@ -98,7 +98,7 @@ $page = isset($_GET['page'])?$_GET['page']:'home';
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Your Website 2021</span>
+                        <span>Copyright &copy; MIT8214 - Module IV </span>
                     </div>
                 </div>
             </footer>
