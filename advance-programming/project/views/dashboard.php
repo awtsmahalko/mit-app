@@ -8,7 +8,7 @@
                         <div class="card-body">
                             <h5 class="card-title text-primary">Centralized Vaccination Tracking System</h5>
                             <p class="mb-4">You have done <span class="fw-bold">72%</span> more
-                                sales today. Check your new badge in your profile.</p>
+                                doses today.</p>
 
                             <a href="javascript:;" class="btn btn-sm btn-label-primary">View
                                 Badges</a>
